@@ -1,7 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 
+import App from '@/presentation/pages/App'
+
 ReactDOM.render(
-  <div>Hello, react!</div>,
+  <App />,
   document.getElementById('main')
 )
