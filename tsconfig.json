@@ -18,5 +18,5 @@
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"forceConsistentCasingInFileNames": true,
 	},
-	"include": ["src"],
+	"include": ["src/**/*"],
 }
