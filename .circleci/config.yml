@@ -77,9 +77,9 @@ jobs:
           name: Run coverage test
           command: yarn test:ci
       - coveralls/upload
-      - run:
-          name: Upload to codecov
-          command: curl -s https://codecov.io/bash -t ${CODECOV_TOKEN}
+      - codecov/upload:
+          file: coverage/coverage-final.json
+          flags: frontend
 
   deploy-to-aws-s3:
     executor: app-executor
