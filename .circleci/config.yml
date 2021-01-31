@@ -30,8 +30,8 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
-      - node/install-packages:
-          pkg-manager: yarn
+      - node/install:
+          install-yarn: true
       - run:
           name: Show current branch
           command: echo ${CURRENT_BRANCH}
