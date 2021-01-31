@@ -76,7 +76,7 @@ jobs:
           name: Run coverage test
           command: yarn test:ci
       - coveralls/upload
-      - when: "${CIRCLE_BRANCH}" == "develop"
+      when: ["${CIRCLE_BRANCH}" == "develop"]
 
   deploy-to-aws-s3:
     executor: app-executor
