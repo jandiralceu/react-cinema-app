@@ -82,7 +82,7 @@ jobs:
       - run:
           name: Publish coverage
           command: |
-            if [ "${CIRCLE_BRANCH}" != "main" and "${CIRCLE_BRANCH}" != "staging"]
+            if [ "${CIRCLE_BRANCH}" == "develop"]
             then
               - coveralls/upload:
                   parallel: true
