@@ -74,20 +74,9 @@ jobs:
       - *restore-cache
       - run:
           name: Run coverage test
-          command: |
-            if [ "${CIRCLE_BRANCH}" != "main" and "${CIRCLE_BRANCH}" != "staging"]
-            then
-              yarn test:ci
-            fi
-      - run:
-          name: Publish coverage
-          command: |
-            if [ "${CIRCLE_BRANCH}" == "develop"]
-            then
-              - coveralls/upload:
-                  parallel: true
-                  flag_name: Unit Tests
-            fi
+          command: yarn test:ci
+      - coveralls/upload
+      - when: <<"${CIRCLE_BRANCH}" == "develop">>
 
   deploy-to-aws-s3:
     executor: app-executor
@@ -141,6 +130,7 @@ workflows:
       - deploy-to-aws-s3:
           requires:
             - build
+            - coverage-test
           filters:
             branches:
               only:
