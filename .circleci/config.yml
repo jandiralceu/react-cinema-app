@@ -77,9 +77,7 @@ jobs:
           name: Run coverage test
           command: yarn test:ci
       - coveralls/upload
-      - codecov/upload:
-          file: coverage/coverage-final.json
-          flags: frontend
+      - codecov/upload
 
   deploy-to-aws-s3:
     executor: app-executor
