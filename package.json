@@ -11,6 +11,7 @@
     "test:watch": "yarn test --watch",
     "test:staged": "yarn test --findRelatedTests",
     "test:ci": "yarn test --coverage",
+    "lint": "eslint --ext .ts,tsx src --fix",
     "build": "webpack --config config/webpack/webpack.prod.js"
   },
   "dependencies": {
