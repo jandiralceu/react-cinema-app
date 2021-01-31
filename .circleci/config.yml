@@ -34,7 +34,7 @@ jobs:
           name: install AWS 
           working_directory: /
           command: |
-            sudo apt-get -y --qq update
+            sudo apt-get -y update
             sudo apt-get install -y awscli
             sudo apt-get install -y python-pip python-dev build-essential
       - run:
