@@ -1,3 +1,5 @@
+orbs:
+  node: circleci/node@4.1.0
 version: 2.1
 jobs:
   build:
@@ -6,6 +8,8 @@ jobs:
     working_directory: ~/repo
     steps:
       - checkout
+      - node/install:
+          install-yarn: true
       - run:
           name: Show current branch
           command: echo ${CURRENT_BRANCH}
@@ -13,9 +17,6 @@ jobs:
           keys:
             - app-{{ checksum "package.json" }}
             - app-
-      - run:
-          name: Install yarn
-          command: npm i -g yarn
       - run:
           name: Install project dependencies
           command: yarn install
