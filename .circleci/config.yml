@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  coveralls: coveralls/coveralls@1.0.6
 executors:
   app-executor:
     docker:
@@ -65,6 +67,28 @@ jobs:
               yarn lint
             fi
 
+  coverage-test:
+    executor: app-executor
+    steps:
+      - checkout
+      - *restore-cache
+      - run:
+          name: Run coverage test
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "main" and "${CIRCLE_BRANCH}" != "staging"]
+            then
+              yarn test:ci
+            fi
+      - run:
+          name: Publish coverage
+          command: |
+            if [ "${CIRCLE_BRANCH}" != "main" and "${CIRCLE_BRANCH}" != "staging"]
+            then
+              - coveralls/upload:
+                  parallel: true
+                  flag_name: Unit Tests
+            fi
+
   deploy-to-aws-s3:
     executor: app-executor
     steps:
@@ -111,6 +135,9 @@ workflows:
       - linting:
           requires:
             - build
+      - coverage-test:
+          requires:
+            - linting
       - deploy-to-aws-s3:
           requires:
             - build
