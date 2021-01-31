@@ -56,12 +56,12 @@ jobs:
     executor: app-executor
     steps:
       - checkout
-      - *show-current-branch-name
       - *restore-cache
       - run:
           name: Run linting
           command: |
-            if [ "${CIRCLE_BRANCH}" != "main" && "${CIRCLE_BRANCH}" != "staging"]; then
+            if [ "${CIRCLE_BRANCH}" != "main" and "${CIRCLE_BRANCH}" != "staging"]
+            then
               yarn lint
             fi
 
@@ -69,7 +69,6 @@ jobs:
     executor: app-executor
     steps:
       - checkout
-      - *show-current-branch-name
       - *install-aws-cli
       - *build-project
       - run:
@@ -89,7 +88,6 @@ jobs:
     executor: app-executor
     steps:
       - checkout
-      - *show-current-branch-name
       - *install-aws-cli
       - *build-project
       - run:
