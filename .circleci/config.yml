@@ -14,11 +14,6 @@ jobs:
             - app-{{ checksum "package.json" }}
             - app-
       - run:
-          name: Install yarn
-          command: |
-            sudo chown -R "$(whoami)" /usr/local/lib/node_modules
-            npm i -g yarn
-      - run:
           name: Install project dependencies
           command: yarn install
       - save_cache:
@@ -42,11 +37,6 @@ jobs:
             sudo apt-get -y --qq update
             sudo apt-get install -y awscli
             sudo apt-get install -y python-pip python-dev build-essential
-      - run:
-          name: Install yarn
-          command: |
-            sudo chown -R "$(whoami)" /usr/local/lib/node_modules
-            npm i -g yarn
       - run:
           name: Build project
           command: |
@@ -84,11 +74,6 @@ jobs:
             sudo apt-get -y --qq update
             sudo apt-get install -y awscli
             sudo apt-get install -y python-pip python-dev build-essential
-      - run:
-          name: Install yarn
-          command: |
-            sudo chown -R "$(whoami)" /usr/local/lib/node_modules
-            npm i -g yarn
       - run:
           name: Build project
           command: |
